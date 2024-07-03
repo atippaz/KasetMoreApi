@@ -18,7 +18,7 @@ services:
       - "80:80"
       - "443:443"
     depends_on:
-      - serverapi
+      - kaset-more
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ../selfsigned.crt:/etc/nginx/selfsigned.crt
