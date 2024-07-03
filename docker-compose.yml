@@ -10,3 +10,22 @@ services:
       - ASPNETCORE_URLS=http://+:80
     volumes:
       - ./logs:/app/logs
+    networks:
+      - servernetwork
+  webserver:
+    image: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - serverapi
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ../selfsigned.crt:/etc/nginx/selfsigned.crt
+      - ../selfsigned.key:/etc/nginx/selfsigned.key
+    networks:
+      - servernetwork
+
+networks:
+  servernetwork:
+    driver: bridge
