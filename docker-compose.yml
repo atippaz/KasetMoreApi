@@ -5,11 +5,13 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
+      - "8443:8443"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS=http://+:8080
+      - ASPNETCORE_URLS=http://+:8080;https://+:8443
     volumes:
       - ./logs:/app/logs
+      - ./keys:/keys
     networks:
       - servernetwork
 
