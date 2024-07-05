@@ -12,14 +12,14 @@ services:
       - ./logs:/app/logs
       networks:
       - servernetwork
-      
+
   webserver:
     image: nginx
     ports:
       - "80:80"
       - "443:443"
     depends_on:
-      - serverapi
+      - kaset-more
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - /etc/letsencrypt/ssl:/cert
