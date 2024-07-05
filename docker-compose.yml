@@ -10,7 +10,7 @@ services:
       - ASPNETCORE_URLS=http://+:8080
     volumes:
       - ./logs:/app/logs
-      networks:
+    networks:
       - servernetwork
 
   webserver:
