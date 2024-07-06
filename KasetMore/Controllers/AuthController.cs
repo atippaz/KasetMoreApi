@@ -32,6 +32,7 @@ namespace KasetMore.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterModel user)
         {
+            Console.WriteLine("register");
             try
             {
                 await _userRepository.Register(user);
@@ -39,6 +40,7 @@ namespace KasetMore.Controllers
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
                 return BadRequest(e.Message);
             }
         }
