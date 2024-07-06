@@ -54,7 +54,7 @@ namespace KasetMore.Controllers
                     return BadRequest();
                 }
                 await _userRepository.UpdateProfilePicture(file, email);
-                return Ok();
+                return Ok("success");
             }
             catch (Exception e)
             {
@@ -71,7 +71,7 @@ namespace KasetMore.Controllers
                     return BadRequest();
                 }
                 await _userRepository.UpdateVerifyFlag(email, flag);
-                return Ok();
+                return Ok("success");
             }
             catch (Exception e)
             {
@@ -84,7 +84,7 @@ namespace KasetMore.Controllers
             try
             {
                 await _userRepository.UpdateProfile(userDto);
-                return Ok();
+                return Ok("success");
             }
             catch (Exception e)
             {
