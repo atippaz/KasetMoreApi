@@ -14,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers().AddJsonOptions(option => option.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
 
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
@@ -49,7 +49,11 @@ builder.Services.AddCors(options =>
                    .AllowAnyHeader();
         });
 });
-
+// Configure the HTTP request pipeline.
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddSwaggerGen();
+}
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
