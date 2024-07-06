@@ -6,6 +6,7 @@ using KasetMore.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,14 +50,22 @@ builder.Services.AddCors(options =>
                    .AllowAnyHeader();
         });
 });
-// Configure the HTTP request pipeline.
+
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ConfigureHttpsDefaults(config =>
+    {
+        config.SslProtocols = System.Security.Authentication.SslProtocols.Tls12 | System.Security.Authentication.SslProtocols.Tls13;
+    });
+});
+
 if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddSwaggerGen();
 }
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
