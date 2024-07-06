@@ -69,7 +69,7 @@ namespace KasetMore.Controllers
             try
             {
                 await _productRepository.UpdateProduct(product);
-                return Ok("success");
+                return Ok(new { Message = "Success" });
             }
             catch (Exception e)
             {
@@ -82,7 +82,7 @@ namespace KasetMore.Controllers
             try
             {
                 await _productRepository.AddProduct(product, images);
-                return Ok("success");
+                return Ok(new { Message = "Success" });
             }
             catch (Exception e)
             {
@@ -95,7 +95,7 @@ namespace KasetMore.Controllers
             try
             {
                 await _productRepository.DeleteProduct(id);
-                return Ok("success");
+                return Ok(new { Message = "Success" });
             }
             catch (Exception e)
             {
@@ -108,7 +108,7 @@ namespace KasetMore.Controllers
             try
             {
                 await _productRepository.DeleteProductImages(ids);
-                return Ok("success");
+                return Ok(new { Message = "Success" });
             }
             catch (Exception e)
             {
