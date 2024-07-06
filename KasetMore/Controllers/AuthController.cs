@@ -36,7 +36,7 @@ namespace KasetMore.Controllers
             try
             {
                 await _userRepository.Register(user);
-                return Ok();
+                return Ok(new { Message = "Success" });
             }
             catch (Exception e)
             {
