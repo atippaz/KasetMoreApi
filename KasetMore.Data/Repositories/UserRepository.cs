@@ -75,14 +75,15 @@ namespace KasetMore.Data.Repositories
                     UserType = "user",
                 });
                 await _context.SaveChangesAsync();
-            } 
-            catch(Exception)
+            }
+            catch (Exception)
             {
                 throw;
             }
         }
         public async Task UpdateProfile(UserDto userRequest)
         {
+            Console.Out.WriteLine(userRequest);
             try
             {
                 _context.Users
@@ -92,9 +93,9 @@ namespace KasetMore.Data.Repositories
                                           .SetProperty(u => u.DisplayName, userRequest.DisplayName)
                                           .SetProperty(u => u.PhoneNumber, userRequest.PhoneNumber)
                                           .SetProperty(u => u.Address, userRequest.Address)
-                                          .SetProperty(u=>u.IdNumber , userRequest.IdNumber)
-                                          .SetProperty(u=>u.LaserCode , userRequest.LaserCode)
-                                          .SetProperty(x=>x.UserType, userRequest.UserType));
+                                          .SetProperty(u => u.IdNumber, userRequest.IdNumber)
+                                          .SetProperty(u => u.LaserCode, userRequest.LaserCode)
+                                          .SetProperty(x => x.UserType, userRequest.UserType));
             }
             catch (Exception)
             {
