@@ -83,6 +83,14 @@ namespace KasetMore.Controllers
         {
             try
             {
+                if (!string.IsNullOrEmpty(userDto.IdNumber))
+                {
+                    bool isDuplicate = await _userRepository.IsIdDuplicate(userDto.IdNumber);
+                    if (isDuplicate)
+                    {
+                        return BadRequest("ID number already exists");
+                    }
+                }
                 await _userRepository.UpdateProfile(userDto);
                 return Ok(new { Message = "Success" });
             }
