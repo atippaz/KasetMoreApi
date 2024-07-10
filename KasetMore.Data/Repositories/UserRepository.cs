@@ -83,7 +83,7 @@ namespace KasetMore.Data.Repositories
         }
         public async Task UpdateProfile(UserDto userRequest)
         {
-            Console.Out.WriteLine(userRequest);
+            Console.WriteLine("sssss:   " + userRequest.IdNumber + "  " + userRequest.LaserCode + "   " + userRequest.Email);
             try
             {
                 _context.Users
