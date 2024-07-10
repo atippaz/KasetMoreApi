@@ -73,8 +73,6 @@ namespace KasetMore.Data.Repositories
                     Password = user.Password,
                     PhoneNumber = user.PhoneNumber,
                     UserType = "user",
-                    IdNumber = user.IdNumber,
-                    LaserCode = user.LaserCode,
                 });
                 await _context.SaveChangesAsync();
             } 
@@ -93,7 +91,9 @@ namespace KasetMore.Data.Repositories
                                           .SetProperty(u => u.LastName, userRequest.LastName)
                                           .SetProperty(u => u.DisplayName, userRequest.DisplayName)
                                           .SetProperty(u => u.PhoneNumber, userRequest.PhoneNumber)
-                                          .SetProperty(u => u.Address, userRequest.Address));
+                                          .SetProperty(u => u.Address, userRequest.Address)
+                                          .SetProperty(u=>u.IdNumber , userRequest.IdNumber)
+                                          .SetProperty(u=>u.LaserCode , userRequest.LaserCode));
             }
             catch (Exception)
             {

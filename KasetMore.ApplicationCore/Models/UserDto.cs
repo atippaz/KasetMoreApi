@@ -13,5 +13,7 @@ namespace KasetMore.ApplicationCore.Models
         public string? IsVerified { get; set; }
         public string? UserType { get; set; }
         public string? ProfilePicture { get; set; }
+        public string? IdNumber { get; set; }
+        public string? LaserCode { get; set; }
     }
 }
