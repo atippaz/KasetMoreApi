@@ -93,7 +93,8 @@ namespace KasetMore.Data.Repositories
                                           .SetProperty(u => u.PhoneNumber, userRequest.PhoneNumber)
                                           .SetProperty(u => u.Address, userRequest.Address)
                                           .SetProperty(u=>u.IdNumber , userRequest.IdNumber)
-                                          .SetProperty(u=>u.LaserCode , userRequest.LaserCode));
+                                          .SetProperty(u=>u.LaserCode , userRequest.LaserCode)
+                                          .SetProperty(x=>x.UserType, userRequest.UserType));
             }
             catch (Exception)
             {
