@@ -35,6 +35,11 @@ namespace KasetMore.Controllers
             Console.WriteLine("register");
             try
             {
+                bool isDuplicate = await _userRepository.IsIdDuplicate(user.IdNumber);
+                if (isDuplicate)
+                {
+                    return BadRequest("ID number already exists");
+                }
                 await _userRepository.Register(user);
                 return Ok(new { Message = "Success" });
             }

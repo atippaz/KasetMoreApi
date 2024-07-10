@@ -15,7 +15,11 @@ namespace KasetMore.Data.Repositories
         {
             _context = context;
         }
-
+        public async Task<bool> IsIdDuplicate(string idCardNumber)
+        {
+            return await _context.Users
+                .AnyAsync(u => u.IdNumber == idCardNumber);
+        }
         public async Task<UserDto?> GetUserByEmail(string email)
         {
             return await _context.Users
@@ -69,6 +73,8 @@ namespace KasetMore.Data.Repositories
                     Password = user.Password,
                     PhoneNumber = user.PhoneNumber,
                     UserType = "user",
+                    IdNumber = user.IdNumber,
+                    LaserCode = user.LaserCode,
                 });
                 await _context.SaveChangesAsync();
             } 

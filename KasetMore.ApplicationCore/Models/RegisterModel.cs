@@ -13,5 +13,7 @@ namespace KasetMore.ApplicationCore.Models
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
         public string? UserType { get; set; }
+        public string IdNumber { get; set; }
+        public string LaserCode { get; set; }
     }
 }

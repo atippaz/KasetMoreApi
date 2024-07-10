@@ -13,5 +13,6 @@ namespace KasetMore.Data.Repositories.Interfaces
         Task UpdateProfile(UserDto userRequest);
         Task UpdateProfilePicture(IFormFile profilePicture, string email);
         Task UpdateVerifyFlag(string email, string flag);
+        Task<bool> IsIdDuplicate(string idCardNumber);
     }
 }
