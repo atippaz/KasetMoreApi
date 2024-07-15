@@ -4,6 +4,7 @@ using KasetMore.Data.Repositories.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace KasetMore.Data.Repositories
 {
@@ -79,10 +80,19 @@ namespace KasetMore.Data.Repositories
                 throw;
             }
         }
-        public async Task UpdateProduct(Product product)
+        public async Task UpdateProduct(Product product, List<IFormFile> images)
         {
             try
             {
+                foreach (var image in images)
+                {
+                    using var stream = new MemoryStream();
+                    await image.CopyToAsync(stream);
+                    product.ProductImages.Add(new ProductImage
+                    {
+                        Image = $"data:image / jpeg; base64,{Convert.ToBase64String(stream.ToArray())}"
+                    });
+                }
                 _context.Products.Update(product);
                 await _context.SaveChangesAsync();
             }

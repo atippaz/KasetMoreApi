@@ -64,11 +64,11 @@ namespace KasetMore.Controllers
             }
         }
         [HttpPost("update-product")]
-        public async Task<IActionResult> UpdateProduct(Product product)
+        public async Task<IActionResult> UpdateProduct(Product product, [FromForm] List<IFormFile> images)
         {
             try
             {
-                await _productRepository.UpdateProduct(product);
+                await _productRepository.UpdateProduct(product, images);
                 return Ok(new { Message = "Success" });
             }
             catch (Exception e)
