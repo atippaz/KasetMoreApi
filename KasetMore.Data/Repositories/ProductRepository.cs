@@ -116,10 +116,11 @@ namespace KasetMore.Data.Repositories
         }
         public async Task DeleteProductImages(int[] ids)
         {
+            Console.WriteLine(ids);
             try
             {
                 await _context.ProductImages
-                    .Where(p => ids.Contains(p.AttatchmentId))
+                    .Where(p => ids.Any(d => d == p.AttatchmentId))
                     .ExecuteDeleteAsync();
             }
             catch (Exception)
