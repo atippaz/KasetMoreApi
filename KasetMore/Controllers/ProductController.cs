@@ -111,7 +111,6 @@ namespace KasetMore.Controllers
         [HttpPost("delete-product-images")]
         public async Task<IActionResult> DeleteProductImages(int[] ids)
         {
-            Console.WriteLine(ids[0]);
             try
             {
                 await _productRepository.DeleteProductImages(ids);
