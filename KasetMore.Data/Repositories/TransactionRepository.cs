@@ -19,6 +19,14 @@ namespace KasetMore.Data.Repositories
                 .Where(t => t.SellerEmail == email)
                 .ToListAsync();
         }
+
+        public async Task<Transaction> GetSellerTransactionsById(int id)
+        {
+
+            return await _context.Transactions
+                .FirstOrDefaultAsync(t => t.TransactionId == id);
+        }
+
         public async Task<List<Transaction>> GetBuyerTransactionsByEmail(string email)
         {
             return await _context.Transactions
@@ -31,7 +39,7 @@ namespace KasetMore.Data.Repositories
                 .Where(t => t.TransactionId == id)
                 .FirstOrDefaultAsync();
         }
-        public async Task<List<int>> AddTransaction(List<Transaction> transactions)
+        public async Task<List<int>> AddTransactions(List<Transaction> transactions)
         {
             try
             {
@@ -39,6 +47,19 @@ namespace KasetMore.Data.Repositories
                 await _context.SaveChangesAsync();
                 await RemoveProductAmount(transactions.First());
                 return transactions.Select(t => t.TransactionId).ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public async Task<int> AddTransaction(Transaction transactions)
+        {
+            try
+            {
+                _context.Transactions.Add(transactions);
+                await _context.SaveChangesAsync();
+                return transactions.TransactionId;
             }
             catch (Exception)
             {

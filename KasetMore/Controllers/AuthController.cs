@@ -24,10 +24,17 @@ namespace KasetMore.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginModel loginModel)
         {
-            (string jwt, string profilePicture) = await _authService.Authenticate(loginModel);
-            return jwt is not null
-                ? Ok(new { jwt, profilePicture})
-                : BadRequest();
+            try
+            {
+                (string jwt, string profilePicture) = await _authService.Authenticate(loginModel);
+                return jwt is not null
+                    ? Ok(new { jwt, profilePicture })
+                    : BadRequest();
+            }catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+           
         }
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterModel user)

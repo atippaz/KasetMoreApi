@@ -39,6 +39,7 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IUnitRepository, UnitRepository>();
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+builder.Services.AddScoped<ITransectionItemRepository, TransectionItemRepository>();
 
 builder.Services.AddCors(options =>
 {

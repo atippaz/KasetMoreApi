@@ -22,6 +22,8 @@ public partial class KasetMoreContext : DbContext
     public virtual DbSet<ProductImage> ProductImages { get; set; }
 
     public virtual DbSet<Transaction> Transactions { get; set; }
+    public virtual DbSet<TransectionItems> TransactionItems { get; set; }
+
 
     public virtual DbSet<Unit> Units { get; set; }
 
@@ -128,6 +130,25 @@ public partial class KasetMoreContext : DbContext
             entity.Property(e => e.SellerEmail)
                 .HasMaxLength(50)
                 .HasColumnName("seller_email");
+            entity.Property(e => e.Unit)
+                .HasMaxLength(20)
+                .HasColumnName("unit");
+        });
+        modelBuilder.Entity<TransectionItems>(entity =>
+        {
+            entity.ToTable("transaction_items");
+            entity.HasKey(e => e.TransactionItemId);
+            entity.Property(e => e.TransactionId)
+                .HasColumnName("transaction_id");
+            entity.Property(e => e.SellerEmail)
+             .HasMaxLength(50)
+             .HasColumnName("seller_email");
+            entity.Property(e => e.Amount).HasColumnName("amount");
+            entity.Property(e => e.TransactionItemId)
+                .HasColumnName("transaction_item_id");
+
+            entity.Property(e => e.Price).HasColumnName("price");
+            entity.Property(e => e.ProductId).HasColumnName("product_id");
             entity.Property(e => e.Unit)
                 .HasMaxLength(20)
                 .HasColumnName("unit");
