@@ -102,12 +102,18 @@ namespace KasetMore.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        public class Payload
+        {
+            public int[] ids { get; set; }
+        }
+
         [HttpPost("delete-product-images")]
-        public async Task<IActionResult> DeleteProductImages(int[] ids)
+        public async Task<IActionResult> DeleteProductImages(Payload payload)
         {
             try
             {
-                await _productRepository.DeleteProductImages(ids);
+                await _productRepository.DeleteProductImages(payload.ids);
                 return Ok(new { Message = "Success" });
             }
             catch (Exception e)

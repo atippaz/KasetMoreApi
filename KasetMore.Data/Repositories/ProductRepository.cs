@@ -114,6 +114,7 @@ namespace KasetMore.Data.Repositories
                 throw;
             }
         }
+
         public async Task DeleteProductImages(int[] ids)
         {
             foreach (var id in ids)
