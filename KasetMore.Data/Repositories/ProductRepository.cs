@@ -116,7 +116,10 @@ namespace KasetMore.Data.Repositories
         }
         public async Task DeleteProductImages(int[] ids)
         {
-            Console.WriteLine(ids);
+            foreach (var id in ids)
+            {
+                Console.WriteLine(id);
+            }
             try
             {
                 await _context.ProductImages
