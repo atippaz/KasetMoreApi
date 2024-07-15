@@ -109,11 +109,11 @@ namespace KasetMore.Controllers
         }
 
         [HttpPost("delete-product-images")]
-        public async Task<IActionResult> DeleteProductImages([FromBody] int[] ids)
+        public async Task<IActionResult> DeleteProductImages([FromBody] Payload payload)
         {
             try
             {
-                await _productRepository.DeleteProductImages(ids);
+                await _productRepository.DeleteProductImages(payload.ids);
                 return Ok(new { Message = "Success" });
             }
             catch (Exception e)
