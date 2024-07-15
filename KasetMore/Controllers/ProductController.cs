@@ -109,7 +109,7 @@ namespace KasetMore.Controllers
         }
 
         [HttpPost("delete-product-images")]
-        public async Task<IActionResult> DeleteProductImages(int[] ids)
+        public async Task<IActionResult> DeleteProductImages([FromBody] int[] ids)
         {
             try
             {
